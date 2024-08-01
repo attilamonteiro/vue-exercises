@@ -1,30 +1,37 @@
-<script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
   <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+    <button @click="showDialog = true">Open Dialog</button>
+    <button @click="toggleFooter">Toggle Footer</button>
+
+    <MyDialog :show="showDialog" title="My Custom Dialog" @close="showDialog = false" @confirm="handleConfirm">
+      <template #body>
+        <p>This is custom body content.</p>
+      </template>
+      <!-- Condicionalmente renderiza o slot footer se showFooter for verdadeiro -->
+      <template v-if="showFooter" #footer>
+        <button @click="handleFooterClick">Custom Footer Button</button>
+      </template>
+    </MyDialog>
   </div>
-  <HelloWorld msg="Vite + Vue" />
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+<script setup lang="ts">
+import { ref } from 'vue';
+import MyDialog from './components/MyDialog.vue';
+
+const showDialog = ref(false);
+const showFooter = ref(false);
+
+function handleConfirm() {
+  alert('Confirmed!');
+  showDialog.value = false;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+
+function handleFooterClick() {
+  alert('Footer button clicked!');
 }
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+
+function toggleFooter() {
+  showFooter.value = !showFooter.value;
 }
-</style>
+</script>

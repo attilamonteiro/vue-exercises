@@ -1,5 +1,32 @@
-# Vue 3 + TypeScript + Vite
+# README: Compreendendo o `useSlots` no Vue 3
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+## O que é `useSlots`?
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+O `useSlots` é uma função da Composition API do Vue 3 que permite acessar e manipular os slots de um componente. Slots são espaços reservados em um componente que permitem que o conteúdo seja inserido de um componente pai.
+
+## Como Usar `useSlots`
+
+```vue
+<template>
+  <div>
+    <!-- Renderiza o slot "header" se existir -->
+    <header v-if="slots.header">
+      <slot name="header" />
+    </header>
+    <!-- Renderiza o slot "body", com conteúdo padrão se o slot não for fornecido -->
+    <main>
+      <slot name="body">Conteúdo padrão</slot>
+    </main>
+    <!-- Renderiza o slot "footer" se existir -->
+    <footer v-if="slots.footer">
+      <slot name="footer" />
+    </footer>
+  </div>
+</template>
+
+<script setup>
+import { useSlots } from 'vue';
+
+// Acessa os slots disponíveis no componente
+const slots = useSlots();
+</script>
