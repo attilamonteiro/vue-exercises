@@ -1,5 +1,9 @@
-# Vue 3 + TypeScript + Vite
+# Transformação do Código para Utilizar defineModels
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+## Descrição
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+Esta branch visa transformar o código existente para utilizar `defineModels`, uma função que facilita a criação de bindings reativos para propriedades de componentes e a emissão de eventos de atualização automaticamente.
+
+## Funcionalidade
+
+A implementação do `defineModels` simplifica o uso de `v-model` e eventos personalizados para a sincronização de dados entre componentes pai e filho.
