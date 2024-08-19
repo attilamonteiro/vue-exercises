@@ -11,7 +11,6 @@
       />
     </div>
     <div class="extra-field">
-      <!-- Input para uma propriedade que não está na interface -->
       <input
         type="text"
         v-model="localTradeForm.extraField"
@@ -22,23 +21,10 @@
 </template>
 
 <script setup lang="ts">
-import { computed, defineProps, defineEmits } from 'vue';
+import { defineModel } from 'vue';
 import { ITradeForm } from './ITradeForm.ts';
 
-const props = defineProps<{
-  modelValue: ITradeForm;
-}>();
-
-const emit = defineEmits<{
-  (event: 'update:modelValue', value: ITradeForm): void;
-}>();
-
-const localTradeForm = computed({
-  get: () => props.modelValue,
-  set: (value: ITradeForm) => {
-    emit('update:modelValue', value);
-  }
-});
+const localTradeForm = defineModel<ITradeForm>('modelValue');
 </script>
 
 <style scoped>
