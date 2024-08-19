@@ -24,7 +24,7 @@
 import { defineModel } from 'vue';
 import { ITradeForm } from './ITradeForm.ts';
 
-const localTradeForm = defineModel<ITradeForm>('modelValue');
+const localTradeForm = defineModel<ITradeForm>('modelValue2');
 </script>
 
 <style scoped>

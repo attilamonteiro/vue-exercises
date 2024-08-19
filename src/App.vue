@@ -1,6 +1,6 @@
 <template>
   <div>
-    <TradeFormComponent v-model:modelValue="tradeFormData" />
+    <TradeFormComponent v-model:modelValue2="tradeFormData" />
     <AnotherComponent />
   </div>
 </template>
