@@ -1,41 +1,53 @@
-<script setup lang="ts">
-import { ref } from 'vue'
-
-defineProps<{ msg: string }>()
-
-const count = ref(0)
-</script>
-
 <template>
-  <h1>{{ msg }}</h1>
-
-  <div class="card">
-    <button type="button" @click="count++">count is {{ count }}</button>
-    <p>
-      Edit
-      <code>components/HelloWorld.vue</code> to test HMR
-    </p>
+  <div>
+    <div class="inline-inputs">
+      <input
+        type="date"
+        v-model="localTradeForm.dataLiquidacao"
+      />
+      <input
+        type="date"
+        v-model="localTradeForm.dataOperacao"
+      />
+    </div>
+    <div class="extra-field">
+      <!-- Input para uma propriedade que não está na interface -->
+      <input
+        type="text"
+        v-model="localTradeForm.extraField"
+        placeholder="Campo Extra"
+      />
+    </div>
   </div>
-
-  <p>
-    Check out
-    <a href="https://vuejs.org/guide/quick-start.html#local" target="_blank"
-      >create-vue</a
-    >, the official Vue + Vite starter
-  </p>
-  <p>
-    Learn more about IDE Support for Vue in the
-    <a
-      href="https://vuejs.org/guide/scaling-up/tooling.html#ide-support"
-      target="_blank"
-      >Vue Docs Scaling up Guide</a
-    >.
-  </p>
-  <p class="read-the-docs">Click on the Vite and Vue logos to learn more</p>
 </template>
 
+<script setup lang="ts">
+import { computed, defineProps, defineEmits } from 'vue';
+import { ITradeForm } from './ITradeForm.ts';
+
+const props = defineProps<{
+  modelValue: ITradeForm;
+}>();
+
+const emit = defineEmits<{
+  (event: 'update:modelValue', value: ITradeForm): void;
+}>();
+
+const localTradeForm = computed({
+  get: () => props.modelValue,
+  set: (value: ITradeForm) => {
+    emit('update:modelValue', value);
+  }
+});
+</script>
+
 <style scoped>
-.read-the-docs {
-  color: #888;
+.inline-inputs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.extra-field {
+  margin-top: 20px;
 }
 </style>
